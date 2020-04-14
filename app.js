@@ -12,11 +12,11 @@ mongoose.connect(settings.MONGODB_URL, {
   useUnifiedTopology: true,
 })
   .then(() => {
-    console.log('Успешное подключение к базе данных');
     const app = express();
-    app.listen(port, () => {
+    app.listen(settings.PORT, () => {
       console.log(`Используемый порт: ${settings.PORT}`);
     });
+    console.log('Успешное подключение к базе данных');
     app.use(routes);
   }).catch((err) => {
     console.log('Ошибка подключения к базе данных:', err);

@@ -1,9 +1,8 @@
-class NotFoundError extends Error {
-    constructor(message) {
-      super(message);
-      this.statusCode = 409;
-    }
+class NotUniqueErr extends Error {
+  constructor(message) {
+    super(message);
+    this.statusCode = 409;
   }
-  
-  module.exports = NotFoundError;
-  
+}
+
+module.exports = NotUniqueErr;

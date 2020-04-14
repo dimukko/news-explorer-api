@@ -8,5 +8,5 @@ module.exports.passwordSchema = Joi.string()
   .messages({
     'any.required': messages.password.isRequired,
     'string.empty': messages.password.isEmpty,
-    'string.min': messages.password.tooShort,
+    'string.min': messages.password.isShort,
   });

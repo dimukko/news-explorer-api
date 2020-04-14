@@ -5,11 +5,12 @@ const { passwordSchema } = require('./password');
 const { objectId } = require('./objectId');
 const { linkSchema } = require('./link');
 const { textSchema } = require('./text');
+const { nameSchema } = require('./name');
 
 const registrationJoi = Joi.object().keys({
+  name: nameSchema,
   email: emailSchema,
   password: passwordSchema,
-  name: textSchema,
 });
 
 const loginJoi = Joi.object().keys({

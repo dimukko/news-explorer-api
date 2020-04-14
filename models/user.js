@@ -32,12 +32,12 @@ const userSchema = new mongoose.Schema({
 
 userSchema.statics.findUserByCredentials = function findUserByCredentials(
   email,
-  password
+  password,
 ) {
   return this.findOne({
     email,
   })
-    .select("+password")
+    .select('+password')
     .then((user) => {
       if (!user) {
         return Promise.reject(new NotAuthorizedErr(messages.authorization.isFailed));
@@ -55,4 +55,4 @@ userSchema.plugin(uniqueValidator, {
   message: messages.registration.isNotUnique,
 });
 
-module.exports = mongoose.model("user", userSchema);
+module.exports = mongoose.model('user', userSchema);
