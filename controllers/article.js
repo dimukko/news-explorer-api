@@ -18,8 +18,10 @@ const createArticle = (req, res, next) => {
     owner: req.user._id,
   })
     .then((article) => {
-      res.status(201).send({
+      res.send({
+        status: '201',
         data: {
+          id: article._id,
           keyword: article.keyword,
           title: article.title,
           text: article.text,
@@ -48,7 +50,7 @@ const deleteArticle = (req, res, next) => {
         throw new ForbiddenErr(messages.article.isForbidden);
       }
       return Article.deleteOne(article)
-        .then(() => res.send({ message: messages.article.isSuccessful }))
+        .then(() => res.send({ status: '200', message: messages.article.isSuccessful }))
         .catch(next);
     })
     .catch(next);

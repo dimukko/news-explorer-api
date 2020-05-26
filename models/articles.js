@@ -12,7 +12,6 @@ const articleSchema = new mongoose.Schema(
     title: {
       type: String,
       minlength: 2,
-      maxlength: 30,
       required: true,
     },
     text: {
@@ -28,7 +27,6 @@ const articleSchema = new mongoose.Schema(
     source: {
       type: String,
       minlength: 2,
-      maxlength: 30,
       required: true,
     },
     link: {

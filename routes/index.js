@@ -6,6 +6,7 @@ const { requestLogger, errorLogger } = require('../middlewares/logs');
 const registration = require('./reg');
 const authorization = require('./auth');
 const users = require('./users');
+const logout = require('./logout');
 const articles = require('./articles');
 const error = require('./error');
 
@@ -17,6 +18,7 @@ router.use('/signup', registration);
 router.use('/signin', authorization);
 router.use('/users', users);
 router.use('/articles', articles);
+router.use('/logout', logout);
 router.use('*', error);
 
 

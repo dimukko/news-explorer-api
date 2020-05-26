@@ -48,8 +48,19 @@ const getUser = (req, res, next) => {
     .catch(next);
 };
 
+const logout = (req, res, next) => {
+  res
+    .status(200)
+    .clearCookie('jwt', {
+      httpOnly: true,
+      sameSite: true,
+    })
+    .end();
+};
+
 module.exports = {
   getUser,
   createUser,
   loginUser,
+  logout,
 };
