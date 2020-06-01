@@ -24,7 +24,7 @@ const auth = (req, res, next) => {
   return User.findById(req.user._id)
     .orFail()
     .then(() => next())
-    .catch((err) => next(new NotAuthorizedErr({ error: err.message })));
+    .catch((err) => next(new NotAuthorizedErr({ message: err.message })));
 };
 
 module.exports = { auth };
