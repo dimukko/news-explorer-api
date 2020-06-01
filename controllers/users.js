@@ -21,7 +21,7 @@ const createUser = (req, res, next) => {
       name, email, password: hash,
     }))
     .then((user) => res.status(201).send({
-      name: user.name, email: user.email, message: messages.registration.isSuccessful,
+      name: user.name, email: user.email, message: messages.registration.isSuccessful, status: '201'
     }))
     .catch((err) => next(new NotUniqueErr(err.message)));
 };
@@ -36,7 +36,7 @@ const loginUser = (req, res, next) => {
         httpOnly: true,
         sameSite: true,
       });
-      res.send({ message: messages.authorization.isSuccessful });
+      res.send({ message: messages.authorization.isSuccessful, status: '200' });
     })
     .catch((err) => next(new NotAuthorizedErr(err.message)));
 };
@@ -44,7 +44,7 @@ const loginUser = (req, res, next) => {
 const getUser = (req, res, next) => {
   User.findById(req.user._id)
     .orFail(() => new NotFoundErr(`${messages.user.id.isNotFound}`))
-    .then((user) => res.send({ info: { name: user.name, email: user.email } }))
+    .then((user) => res.send({ info: { name: user.name, email: user.email }, status: '200' }))
     .catch(next);
 };
 
@@ -53,8 +53,8 @@ const logout = (req, res, next) => {
     .status(200)
     .clearCookie('jwt', {
       httpOnly: true,
-      sameSite: true,
     })
+    res.send({ status: '200' })
     .end();
 };
 
